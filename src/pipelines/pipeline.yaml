@@ -1,0 +1,10 @@
+input_file: "pipelines/inputs.yaml"
+
+pipeline:
+  - name: validate-env
+    job: validate_env
+    enabled: true
+
+  - name: print-summary
+    job: print_summary
+    enabled: true

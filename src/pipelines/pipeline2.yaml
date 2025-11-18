@@ -1,0 +1,8 @@
+input_file: "pipelines/inputs.yaml"
+
+pipeline:
+  - name: create-organization
+    job: create_organization
+    enabled: true
+    params:
+      name: "{{ inputs.organization }}"
