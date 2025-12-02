@@ -1,34 +1,30 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: quay-provisioner
-  annotations:
-    checksum/pipelines: "{{ include (print $.Template.BasePath \"/pipelines-configmap.yaml\") . | sha256sum }}"
+  name: {{ include "quay-provisioner.fullname" . }}
 spec:
   template:
     spec:
-      serviceAccountName: quay-provisioner
+      serviceAccountName: {{ include "quay-provisioner.serviceAccountName" . }}
       restartPolicy: Never
       containers:
         - name: provisioner
-          image: busybox:latest
-          command: ["sh", "-c"]
-          args: ["echo 'Job läuft erfolgreich' && sleep 300"]
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
             - name: QUAY_API_BASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: quay-config
+                  name: {{ .Values.secrets.name }}
                   key: QUAY_API_BASE_URL
             - name: QUAY_API_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: quay-config
+                  name: {{ .Values.secrets.name }}
                   key: QUAY_API_TOKEN
           volumeMounts:
             - name: pipelines
-              mountPath: /app/src/pipelines
+              mountPath: {{ .Values.pipelines.mountPath }}
       volumes:
         - name: pipelines
           configMap:
-            name: quay-provisioner-pipelines
+            name: {{ .Values.pipelines.configMapName }}

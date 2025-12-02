@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Refactor loader.py and main.py to streamline pipeline file path handling" />
+    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Refactor main.py to use Config for pipeline file path resolution">
+      <change afterPath="$PROJECT_DIR$/helm/templates/service-account.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm/templates/job.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/templates/job.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm/templates/pipelines-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/templates/pipeline-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm/templates/quay-config-secret.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/templates/quay-config-secret.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm/templates/serviceaccount.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/values.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +71,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/momo/PycharmProjects/PipelineExecutionPlatform",
+    "last_opened_file_path": "/Users/momo/PycharmProjects/PipelineExecutionPlatform/helm/templates",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,6 +82,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/helm/templates" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/quay" />
       <recent name="$PROJECT_DIR$/src/actions" />
@@ -182,7 +191,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763464193104</updated>
-      <workItem from="1764665418800" duration="7950000" />
+      <workItem from="1764665418800" duration="8768000" />
     </task>
     <task id="LOCAL-00001" summary="Implement action registry and API client for organization management">
       <option name="closed" value="true" />
@@ -296,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764673286730</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Refactor main.py to use Config for pipeline file path resolution">
+      <option name="closed" value="true" />
+      <created>1764673453035</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1764673453035</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,7 +332,8 @@
     <MESSAGE value="Add multi-architecture support for Docker images in GitHub Actions workflow" />
     <MESSAGE value="Refactor loader.py to use BASE_DIR for pipeline file path resolution" />
     <MESSAGE value="Refactor loader.py and main.py to streamline pipeline file path handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor loader.py and main.py to streamline pipeline file path handling" />
+    <MESSAGE value="Refactor main.py to use Config for pipeline file path resolution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor main.py to use Config for pipeline file path resolution" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1764672850842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
