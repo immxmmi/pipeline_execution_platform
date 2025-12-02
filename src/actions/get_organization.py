@@ -7,6 +7,17 @@ class GetOrganizationAction:
     def __init__(self, gateway=None):
         self.gateway = gateway or QuayGateway()
 
+    @staticmethod
+    def exists(name: str) -> bool:
+        try:
+            gateway = QuayGateway()
+            result = gateway.get_organization(name)
+            return result is not None
+        except Exception as e:
+            if "404" in str(e):  # NOT FOUND means it does not exist
+                return False
+            raise e
+
     def execute(self, data: dict) -> ActionResponse:
         try:
             print(f"[GetOrganizationAction] Executing with data: {data}")

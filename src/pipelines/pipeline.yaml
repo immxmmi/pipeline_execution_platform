@@ -3,7 +3,7 @@ input_file: "pipelines/inputs.yaml"
 pipeline:
   - name: create-organizations
     job: create_organization
-    enabled: false
+    enabled: true
     params_list: "{{ inputs.organizations }}"
 
   - name: create-robot-accounts

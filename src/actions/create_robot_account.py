@@ -1,6 +1,8 @@
 from gateway.quay_gateway import QuayGateway
 from model.action_response import ActionResponse
 from model.robot_account_model import CreateRobotAccount
+from actions.get_robot_account import GetRobotAccountAction
+from actions.get_organization import GetOrganizationAction
 
 
 class CreateRobotAccountAction:
@@ -16,6 +18,24 @@ class CreateRobotAccountAction:
             org = data.get("organization")
             if not org:
                 raise ValueError("Missing required field: 'organization'")
+
+            print(f"[CreateRobotAccountAction] Checking if organization exists: {org}")
+            if not GetOrganizationAction.exists(org):
+                print(f"[CreateRobotAccountAction] Organization does NOT exist: {org}")
+                return ActionResponse(
+                    success=False,
+                    message="Organization does not exist",
+                    data={"organization": org}
+                )
+
+            print(f"[CreateRobotAccountAction] Checking if robot account exists: {org}/{dto.robot_shortname}")
+            if GetRobotAccountAction.exists(org, dto.robot_shortname):
+                print(f"[CreateRobotAccountAction] Robot already exists: {dto.robot_shortname}")
+                return ActionResponse(
+                    success=True,
+                    message="Robot account already exists",
+                    data={"organization": org, "robot": dto.robot_shortname}
+                )
 
             result = self.gateway.create_robot_account(
                 organization=org,

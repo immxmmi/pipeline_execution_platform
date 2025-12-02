@@ -7,6 +7,20 @@ class GetRobotAccountAction:
     def __init__(self, gateway=None):
         self.gateway = gateway or QuayGateway()
 
+    @staticmethod
+    def exists(organization: str, robot: str) -> bool:
+        try:
+            gateway = QuayGateway()
+            result = gateway.get_robot_account(
+                organization=organization,
+                robot_shortname=robot
+            )
+            return result is not None
+        except Exception as e:
+            if "404" in str(e):
+                return False
+            raise e
+
     def execute(self, data: dict):
         try:
             print(f"[GetRobotAccountAction] Executing with data: {data}")

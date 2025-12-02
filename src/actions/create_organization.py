@@ -1,6 +1,7 @@
 from gateway.quay_gateway import QuayGateway
 from model.action_response import ActionResponse
 from model.organization_model import Organization
+from actions.get_organization import GetOrganizationAction
 
 
 class CreateOrganizationAction:
@@ -12,6 +13,18 @@ class CreateOrganizationAction:
             print(f"[CreateOrganizationAction] Executing with data: {data}")
             org = Organization(**data)
             print(f"[CreateOrganizationAction] Filtered model data: {org.model_dump()}")
+
+            # --- VALIDATION ---
+            print(f"[CreateOrganizationAction] Checking if organization exists: {org.name}")
+            if GetOrganizationAction.exists(org.name):
+                print(f"[CreateOrganizationAction] Organization already exists: {org.name}")
+                return ActionResponse(
+                    success=True,
+                    message="Organization already exists",
+                    data={"organization": org.name}
+                )
+
+            # --- CREATE NEW ORG ---
             result = self.gateway.create_organization(org.name)
             print(f"[CreateOrganizationAction] API result: {result}")
 
