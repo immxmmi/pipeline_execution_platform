@@ -9,6 +9,9 @@ TARGET_FILE = "pipelines/pipeline.yaml"
 class Config:
     def __init__(self):
         config_file = Path(__file__).parent / "settings.yaml"
+        # Ensure pipelines directory exists (important for local runs)
+        pipelines_dir = Path(__file__).parent.parent / "pipelines"
+        pipelines_dir.mkdir(parents=True, exist_ok=True)
         data = yaml.safe_load(config_file.read_text())
 
         env_base = os.getenv("QUAY_API_BASE_URL")

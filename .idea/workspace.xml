@@ -5,11 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Add organization and robot account existence checks in actions">
-      <change beforePath="$PROJECT_DIR$/src/actions/create_organization.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/create_organization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/create_robot_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/create_robot_account.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/git_watcher/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/git_watcher/watcher.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile_offline" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/annotated_types-0.7.0-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/certifi-2025.11.12-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/charset_normalizer-3.4.4-cp312-cp312-macosx_10_13_universal2.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/idna-3.11-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/pydantic-2.12.4-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/pydantic_core-2.41.5-cp312-cp312-macosx_11_0_arm64.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/requests-2.32.5-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/typing_extensions-4.15.0-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/typing_inspection-0.4.2-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/urllib3-2.5.0-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quay-provisioner/templates/job.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/templates/job.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quay-provisioner/templates/pipelines-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/templates/pipelines-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quay-provisioner/templates/quay-config-secret.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/templates/quay-config-secret.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +51,10 @@
     &quot;accountId&quot;: &quot;996268fd-7a60-4e13-90d1-5839b689dbbe&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -59,6 +72,8 @@
     "Docker.gittea/docker-compose.yaml: Compose Deployment.executor": "Run",
     "Docker.quay/docker-compose.yaml: Compose Deployment.executor": "Run",
     "KUBERNETES_SUPPRESS_CONFIG_CLUSTER_SUGGESTION": "true",
+    "Makefile Target.help.executor": "Run",
+    "Makefile Target.run_image.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.main.executor": "Run",
     "Python.pipeline_engine.executor": "Run",
@@ -91,7 +106,19 @@
       <recent name="$PROJECT_DIR$/src/gateway" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Makefile Target.run_image">
+    <configuration name="help" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="help" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="run_image" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="run_image" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PipelineExecutionPlatform" />
       <option name="ENV_FILES" value="" />
@@ -107,29 +134,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="watcher" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PipelineExecutionPlatform" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/git_watcher" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/git_watcher/watcher.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,14 +162,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="gittea/docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="environment/gittea/docker-compose.yaml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="quay/docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -176,17 +172,18 @@
     </configuration>
     <list>
       <item itemvalue="Docker.Dockerfile" />
-      <item itemvalue="Docker.gittea/docker-compose.yaml: Compose Deployment" />
       <item itemvalue="Docker.quay/docker-compose.yaml: Compose Deployment" />
-      <item itemvalue="Python.watcher" />
+      <item itemvalue="Makefile Target.help" />
+      <item itemvalue="Makefile Target.run_image" />
       <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Makefile Target.run_image" />
+        <item itemvalue="Makefile Target.help" />
         <item itemvalue="Python.main" />
         <item itemvalue="Docker.quay/docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Docker.Dockerfile" />
-        <item itemvalue="Docker.gittea/docker-compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -204,7 +201,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763464193104</updated>
-      <workItem from="1764665418800" duration="3943000" />
+      <workItem from="1764665418800" duration="5238000" />
     </task>
     <task id="LOCAL-00001" summary="Implement action registry and API client for organization management">
       <option name="closed" value="true" />
@@ -254,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764669158856</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add organization and robot account existence checks in actions">
+      <option name="closed" value="true" />
+      <created>1764669466809</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764669466809</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +275,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Add organization and robot account existence checks in actions" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1764669287191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1764669415911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
