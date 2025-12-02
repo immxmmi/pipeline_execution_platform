@@ -11,6 +11,7 @@ permissions:
 
 env:
   HELM_REPO: oci://ghcr.io/${{ github.repository_owner }}/quay-provisioner-chart
+  CHART_VERSION: "0.1.0"
 
 jobs:
   build-and-push-helm:
@@ -30,8 +31,8 @@ jobs:
       - name: Package Helm Chart
         run: |
           helm package ./helm \
-            --version "0.1.0" \
-            --app-version "0.1.0"
+            --version "${{ env.CHART_VERSION }}" \
+            --app-version "${{ env.CHART_VERSION }}"
           mv *.tgz chart.tgz
 
       - name: Login to GHCR
