@@ -20,13 +20,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract version
-        id: meta
-        run: |
-          GIT_SHA=$(git rev-parse --short HEAD)
-          VERSION="0.1.0-${GIT_SHA}"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-
       - name: Install Helm
         run: |
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -37,8 +30,8 @@ jobs:
       - name: Package Helm Chart
         run: |
           helm package ./helm \
-            --version "${{ steps.meta.outputs.version }}" \
-            --app-version "${{ steps.meta.outputs.version }}"
+            --version "0.1.0" \
+            --app-version "0.1.0"
           mv *.tgz chart.tgz
 
       - name: Login to GHCR
