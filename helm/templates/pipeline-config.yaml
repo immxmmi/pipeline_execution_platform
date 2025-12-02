@@ -20,8 +20,8 @@ data:
       - name: create-organizations
         job: create_organization
         enabled: true
-        params_list: "{{ inputs.organizations }}"
+        params_list: "{{`{{ inputs.organizations }}`}}"
       - name: create-robot-accounts
         job: create_robot_account
         enabled: true
-        params_list: "{{ inputs.robot_accounts }}"
+        params_list: "{{`{{ inputs.robot_accounts }}`}}"
