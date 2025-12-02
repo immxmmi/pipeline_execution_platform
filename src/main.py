@@ -1,6 +1,5 @@
 from engine.pipeline_engine import PipelineEngine
-
-TARGET_FILE = "pipelines/pipeline.yaml"
+from config.loader import TARGET_FILE
 
 engine = PipelineEngine()
 

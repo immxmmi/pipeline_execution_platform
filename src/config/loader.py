@@ -11,6 +11,16 @@ class Config:
         pipelines_dir.mkdir(parents=True, exist_ok=True)
         data = yaml.safe_load(config_file.read_text())
 
+        # Resolve absolute base directory for the project
+        BASE_DIR = Path(__file__).resolve().parent.parent
+
+        # Determine pipeline file from ENV or fallback to default location
+        pipeline_env = os.getenv("PIPELINE_FILE")
+        if pipeline_env:
+            self.pipeline_file = Path(pipeline_env).resolve()
+        else:
+            self.pipeline_file = (BASE_DIR / "pipelines" / "pipeline.yaml").resolve()
+
         env_base = os.getenv("QUAY_API_BASE_URL")
         env_token = os.getenv("QUAY_API_TOKEN")
 
