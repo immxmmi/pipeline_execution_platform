@@ -9,6 +9,7 @@ help:
 	@echo "  deinstall_quay_environment Stop and remove Quay test environment"
 	@echo "  create_wheelhouse          Build Python wheels for offline builds"
 	@echo "  clean_wheelhouse           Clean the wheelhouse directory"
+	@echo "  check_python_version       Check Python version in the Docker image"
 	@echo "  build_image                Build normal Docker image"
 	@echo "  build_offline              Build offline Docker image (uses wheelhouse)"
 	@echo ""
@@ -18,7 +19,7 @@ help:
 
 
 PY_VERSION ?= 3.12
-IMAGE      ?= python:$(PY_VERSION)-slim
+IMAGE      ?= quay.io/lib/python:$(PY_VERSION)
 
 
 install_quay_environment:
@@ -30,6 +31,11 @@ deinstall_quay_environment:
 	@echo "Removing Quay environment..."
 	docker compose -f environment/quay/docker-compose.yaml down
 	@echo "Quay environment removed."
+
+check_python_version:
+	@echo "Checking Python version in Docker image..."
+	docker run --rm $(IMAGE) python --version
+	@echo "Python version checked."
 
 create_wheelhouse:
 	mkdir -p wheels
