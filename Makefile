@@ -7,6 +7,8 @@ help:
 	@echo "  help                       Show this help message"
 	@echo "  install_quay_environment   Start local Quay test environment"
 	@echo "  deinstall_quay_environment Stop and remove Quay test environment"
+	@echo "  export_image               Export the Docker image to a tar file"
+	@echo "  run_image                  Run the Docker image interactively"
 	@echo "  create_wheelhouse          Build Python wheels for offline builds"
 	@echo "  clean_wheelhouse           Clean the wheelhouse directory"
 	@echo "  check_python_version       Check Python version in the Docker image"
@@ -56,6 +58,11 @@ build_image:
 	@echo "Building Docker image..."
 	docker build -t quay-provisioner .
 	@echo "Docker image built."
+
+export_image:
+	@echo "Exporting Docker image quay-provisioner..."
+	docker save quay-provisioner -o quay-provisioner.tar
+	@echo "✓ Image exported to quay-provisioner.tar"
 
 build_offline:
 	@echo "Building offline Docker image..."
