@@ -62,6 +62,13 @@ build_image:
 	docker build -t quay-provisioner .
 	@echo "Docker image built."
 
+download_image:
+	skopeo copy \
+  --override-os linux \
+  --override-arch amd64 \
+  docker://ghcr.io/immxmmi/quay-provisioner:0.1.0-6408c92 \
+  docker-archive:quay-provisioner.tar
+
 export_image: build_image
 	@echo "Exporting Docker image quay-provisioner..."
 	docker save quay-provisioner -o quay-provisioner.tar
