@@ -1,5 +1,5 @@
 organizations:
-  - name: "test"
+  - name: "falko"
     visibility: "private"
     email: "test@test.ch"
     owner: "test"

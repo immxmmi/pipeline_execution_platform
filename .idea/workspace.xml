@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Add helper template functions for chart name and service account resolution" />
+    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Set chart version as an environment variable in Helm push workflow">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile_offline" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile_offline" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pipelines/inputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/pipelines/inputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/annotated_types-0.7.0-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/certifi-2025.11.12-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/charset_normalizer-3.4.4-cp312-cp312-macosx_10_13_universal2.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/idna-3.11-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/pydantic-2.12.5-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/pydantic_core-2.41.5-cp312-cp312-macosx_11_0_arm64.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/requests-2.32.5-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/typing_extensions-4.15.0-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/typing_inspection-0.4.2-py3-none-any.whl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wheels/urllib3-2.5.0-py3-none-any.whl" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +48,9 @@
     &quot;accountId&quot;: &quot;996268fd-7a60-4e13-90d1-5839b689dbbe&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Library/Caches/JetBrains/PyCharm2025.2/python_stubs/-2140505264/builtins.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -47,31 +66,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.Dockerfile.executor": "Run",
-    "Docker.gittea/docker-compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.quay/docker-compose.yaml: Compose Deployment.executor": "Run",
-    "KUBERNETES_SUPPRESS_CONFIG_CLUSTER_SUGGESTION": "true",
-    "Makefile Target.help.executor": "Run",
-    "Makefile Target.run_image.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.main.executor": "Run",
-    "Python.pipeline_engine.executor": "Run",
-    "Python.watcher.yaml.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/momo/PycharmProjects/PipelineExecutionPlatform/helm/templates",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.gittea/docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.quay/docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;KUBERNETES_SUPPRESS_CONFIG_CLUSTER_SUGGESTION&quot;: &quot;true&quot;,
+    &quot;Makefile Target.help.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.run_image.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pipeline_engine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.watcher.yaml.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/momo/PycharmProjects/PipelineExecutionPlatform/helm/templates&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/helm/templates" />
@@ -172,6 +194,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PY-252.27397.106" />
         <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
       </set>
     </attachedChunks>
@@ -183,7 +206,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763464193104</updated>
-      <workItem from="1764665418800" duration="9721000" />
+      <workItem from="1764665418800" duration="17082000" />
+      <workItem from="1764769826104" duration="949000" />
+      <workItem from="1764837174966" duration="2326000" />
     </task>
     <task id="LOCAL-00001" summary="Implement action registry and API client for organization management">
       <option name="closed" value="true" />
@@ -345,7 +370,39 @@
       <option name="project" value="LOCAL" />
       <updated>1764678358513</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Update version extraction in GitHub Actions to include short SHA">
+      <option name="closed" value="true" />
+      <created>1764678512024</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1764678512024</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Remove version extraction step from GitHub Actions workflow and hardcode version in Helm chart packaging">
+      <option name="closed" value="true" />
+      <created>1764678617912</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1764678617912</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Set chart version as an environment variable in Helm push workflow">
+      <option name="closed" value="true" />
+      <created>1764678664012</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1764678664012</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Add error handling for pipeline failures in pipeline_engine.py">
+      <option name="closed" value="true" />
+      <created>1764689564538</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1764689564538</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,10 +427,13 @@
     <MESSAGE value="Update pipeline-config.yaml to escape input parameters for proper rendering" />
     <MESSAGE value="Update values.yaml to use 'latest' tag for image and modify workspace.xml for task tracking" />
     <MESSAGE value="Add helper template functions for chart name and service account resolution" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add helper template functions for chart name and service account resolution" />
+    <MESSAGE value="Update version extraction in GitHub Actions to include short SHA" />
+    <MESSAGE value="Remove version extraction step from GitHub Actions workflow and hardcode version in Helm chart packaging" />
+    <MESSAGE value="Set chart version as an environment variable in Helm push workflow" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set chart version as an environment variable in Helm push workflow" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1764672850842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1764689541250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

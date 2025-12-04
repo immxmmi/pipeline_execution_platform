@@ -26,9 +26,11 @@ deinstall_quay_environment:
 	@echo "Quay environment removed."
 
 create_wheelhouse:
-	@echo "Creating wheelhouse..."
-	pip download -r requirements.txt -d wheels/
-	@echo "Wheelhouse created."
+	docker run --rm \
+	  -v "$(pwd)/requirements.txt:/requirements.txt" \
+	  -v "$(pwd)/wheels:/wheels" \
+	  python:3.12-slim \
+	  sh -c "pip install --upgrade pip && pip download -r /requirements.txt -d /wheels"
 
 build_image:
 	@echo "Building Docker image..."
