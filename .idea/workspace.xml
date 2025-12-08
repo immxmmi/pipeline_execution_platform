@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Add download_image target to Makefile and update workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/templates/job.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/templates/job.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gateway/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +194,9 @@
       <updated>1763464193104</updated>
       <workItem from="1764665418800" duration="17082000" />
       <workItem from="1764769826104" duration="949000" />
-      <workItem from="1764837174966" duration="10643000" />
+      <workItem from="1764837174966" duration="11314000" />
+      <workItem from="1764931683720" duration="144000" />
+      <workItem from="1765182075966" duration="660000" />
     </task>
     <task id="LOCAL-00001" summary="Implement action registry and API client for organization management">
       <option name="closed" value="true" />
@@ -479,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764862777267</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Add CA bundle support in API client and update Helm chart configuration">
+      <option name="closed" value="true" />
+      <created>1764865873351</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1764865873351</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
