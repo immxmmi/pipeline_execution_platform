@@ -18,6 +18,9 @@ pipelines:
   configMapName: quay-provisioner-pipelines
   mountPath: /app/pipelines
 
+settings:
+  disableTlsVerify: false
+
 caBundle:
   enabled: false
   configMapName: custom-ca-bundle

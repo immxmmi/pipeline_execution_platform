@@ -11,6 +11,8 @@ spec:
         - name: provisioner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
+            - name: DISABLE_TLS_VERIFY
+              value: "{{ .Values.settings.disableTlsVerify }}"
             - name: QUAY_API_BASE_URL
               valueFrom:
                 secretKeyRef:
