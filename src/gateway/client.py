@@ -14,7 +14,13 @@ class ApiClient:
 
     def request(self, method, endpoint, **kwargs):
         url = f"{self.base_url}/{endpoint.lstrip('/')}"
-        verify_path = os.getenv("CA_BUNDLE", "/etc/ssl/certs/custom-ca.pem")
+        disable_verify = os.getenv("DISABLE_TLS_VERIFY", "false").lower() == "true"
+
+        if disable_verify:
+            verify_path = False
+        else:
+            verify_path = os.getenv("CA_BUNDLE", "/etc/ssl/certs/custom-ca.pem")
+
         response = requests.request(
             method,
             url,
@@ -24,6 +30,7 @@ class ApiClient:
         )
         response.raise_for_status()
         return response.json() if response.text else {}
+
 
     def get(self, endpoint, **kwargs):
         return self.request('GET', endpoint, **kwargs)
