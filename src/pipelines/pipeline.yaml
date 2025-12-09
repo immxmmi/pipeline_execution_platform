@@ -6,5 +6,5 @@ pipeline:
 
   - name: create-robot-accounts
     job: create_robot_account
-    enabled: true
+    enabled: false
     params_list: "{{ robot_accounts }}"

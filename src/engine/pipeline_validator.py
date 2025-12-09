@@ -1,3 +1,4 @@
+import sys
 from engine.action_registry import ACTION_REGISTRY
 
 class PipelineValidator:
@@ -6,7 +7,8 @@ class PipelineValidator:
         for step in pipeline.pipeline:
             if step.job not in ACTION_REGISTRY:
                 allowed = ", ".join(ACTION_REGISTRY.keys())
-                raise ValueError(
-                    f"Invalid job '{step.job}' in step '{step.name}'. "
-                    f"Allowed jobs: {allowed}"
-                )
+
+                print(f"❌ Invalid job '{step.job}' in step '{step.name}'.")
+                print(f"   Allowed jobs: {allowed}")
+
+                sys.exit(1)
