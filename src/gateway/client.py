@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 from config.loader import Config
 
@@ -7,13 +8,23 @@ class ApiClient:
 
     def __init__(self):
         cfg = Config()
+        self.cfg = cfg
+
+        if cfg.debug:
+            print(f"[DEBUG] ApiClient base_url={cfg.base_url}")
+            print(f"[DEBUG] ApiClient auth_type={cfg.auth_type}")
 
         self.base_url = cfg.base_url.rstrip("/")
         self.headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {cfg.token}" if cfg.token else None
+            "Content-Type": "application/json"
         }
-        # Entferne leere Header
+        if cfg.auth_type.lower() == "bearer":
+            self.headers["Authorization"] = f"Bearer {cfg.token}"
+        elif cfg.auth_type.lower() == "basic":
+            self.headers["Authorization"] = f"Basic {cfg.token}"
+        elif cfg.auth_type.lower() == "apikey":
+            self.headers["X-API-Key"] = cfg.token
+
         self.headers = {k: v for k, v in self.headers.items() if v}
 
         disable_verify = os.getenv("DISABLE_TLS_VERIFY", "false").lower() == "true"
@@ -21,6 +32,17 @@ class ApiClient:
 
     def _request(self, method, endpoint, **kwargs):
         url = f"{self.base_url}/{endpoint.lstrip('/')}"
+
+        if self.cfg.debug:
+            print(f"[DEBUG] Request {method} {url}")
+            curl_parts = ["curl", "-X", method]
+            for k, v in self.headers.items():
+                curl_parts.append(f"-H '{k}: {v}'")
+            if "json" in kwargs:
+                import json as _json
+                curl_parts.append(f"-d '{_json.dumps(kwargs.get('json'))}'")
+            curl_parts.append(f"'{url}'")
+            print(f"[DEBUG] CURL: {' '.join(curl_parts)}")
 
         try:
             response = requests.request(
@@ -30,24 +52,39 @@ class ApiClient:
                 verify=self.verify,
                 **kwargs
             )
+        except requests.ConnectionError as e:
+            print("❌ API CLIENT FAILURE")
+            print(f"Connection refused when calling {url}\n{e}")
+            sys.exit(1)
+        except requests.Timeout as e:
+            print("❌ API CLIENT FAILURE")
+            print(f"Request timeout when calling {url}\n{e}")
+            sys.exit(1)
         except requests.RequestException as e:
-            raise RuntimeError(f"API connection error: {e}")
+            print("❌ API CLIENT FAILURE")
+            print(f"Unexpected request error: {e}")
+            sys.exit(1)
 
-        # Raise HTTP errors directly
+        # Raise HTTP errors (4xx, 5xx)
+        if response.status_code == 404 and method == "GET":
+            return None
+
         try:
             response.raise_for_status()
-        except requests.HTTPError as err:
-            msg = f"API error {response.status_code} on {method} {url}"
-            raise RuntimeError(f"{msg}\nResponse: {response.text}") from err
+        except requests.HTTPError:
+            print("❌ API CLIENT FAILURE")
+            print(f"HTTP {response.status_code} on {method} {url}\nResponse Body:\n{response.text}")
+            sys.exit(1)
 
-        # Empty response
-        if not response.text.strip():
+        # Empty body
+        if not response.text or not response.text.strip():
             return {}
 
-        # Try JSON parsing
+        # Try parsing JSON
         try:
             return response.json()
         except ValueError:
+            print("⚠️  WARN: Non-JSON response received")
             return {
                 "warning": "Non-JSON response",
                 "status": response.status_code,

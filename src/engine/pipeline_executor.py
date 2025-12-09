@@ -1,5 +1,6 @@
 from engine.action_registry import ACTION_REGISTRY
 from engine_reader.pipeline_reader import PipelineReader
+from config.loader import Config
 
 class PipelineExecutor:
 
@@ -8,6 +9,10 @@ class PipelineExecutor:
 
     def run_pipeline(self, pipeline, inputs_file):
         inputs = self.reader.load_inputs(inputs_file)
+
+        cfg = Config()
+        if cfg.debug:
+            print(f"[DEBUG] Executor loaded inputs: {inputs}")
 
         for step in pipeline.pipeline:
             if not step.enabled:
@@ -21,12 +26,19 @@ class PipelineExecutor:
                 items = inputs.get(key, [])
 
                 for params in items:
+                    if cfg.debug:
+                        print(f"[DEBUG] Executing step {step.name} with params: {params}")
                     self._run_action(step, action, params)
                 continue
 
+            if cfg.debug:
+                print(f"[DEBUG] Executing step {step.name} with params: {step.params or {}}")
             self._run_action(step, action, step.params or {})
 
     def _run_action(self, step, action, params):
+        cfg = Config()
+        if cfg.debug:
+            print(f"[DEBUG] _run_action invoked for {step.name}")
         print(f"▶ Running step: {step.name} ({step.job})")
         response = action.execute(params)
 

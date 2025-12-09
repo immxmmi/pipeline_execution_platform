@@ -1,34 +1,53 @@
 import os
 from pathlib import Path
-
 import yaml
 
+
 class Config:
+
     def __init__(self):
         config_file = Path(__file__).parent / "settings.yaml"
-        pipelines_dir = Path(__file__).parent.parent / "pipelines"
-        pipelines_dir.mkdir(parents=True, exist_ok=True)
+        data = yaml.safe_load(config_file.read_text())
+
+        debug_cfg = data.get("debug", {})
+        self.debug = os.getenv("DEBUG_ENABLED", str(debug_cfg.get("enabled", "false"))).lower() == "true"
 
         BASE_DIR = Path(__file__).resolve().parent.parent
 
-        pipeline_env = os.getenv("PIPELINE_FILE")
-        if pipeline_env:
-            self.pipeline_file = Path(pipeline_env).resolve()
-        else:
-            self.pipeline_file = (BASE_DIR / "pipelines" / "pipeline.yaml").resolve()
-
+        self.pipeline_file = Path(os.getenv("PIPELINE_FILE", BASE_DIR / "pipelines/pipeline.yaml")).resolve()
         self.inputs_file = (BASE_DIR / "pipelines" / "inputs.yaml").resolve()
 
-        data = yaml.safe_load(config_file.read_text())
+        api = data["api"]
+        auth = data.get("auth", {})
 
-        env_base = os.getenv("QUAY_API_BASE_URL")
-        env_token = os.getenv("QUAY_API_TOKEN")
+        # --- API CONFIG ---
+        raw_host = os.getenv("API_HOST", api.get("host"))
+        if raw_host.startswith("http://") or raw_host.startswith("https://"):
+            self.host = raw_host.rstrip("/")
+        else:
+            self.host = f"http://{raw_host}".rstrip("/")
 
-        self.base_url = env_base if env_base and env_base.strip() else data["api"].get("base_url")
-        self.token = env_token if env_token and env_token.strip() else data["api"].get("token")
+        self.port = int(os.getenv("API_PORT", api.get("port")))
 
-        if not self.base_url:
-            raise ValueError("QUAY_API_BASE_URL is not set in environment variables or settings.yaml")
+        raw_base_path = os.getenv("API_BASE_PATH", api.get("base_path", "/api/v1"))
+        self.base_path = raw_base_path.rstrip("/")
+
+        self.base_url = f"{self.host}:{self.port}{self.base_path}"
+
+        if self.debug:
+            print(f"[DEBUG] Config raw_host={raw_host}")
+            print(f"[DEBUG] Config normalized_host={self.host}")
+            print(f"[DEBUG] Config port={self.port}")
+            print(f"[DEBUG] Config raw_base_path={raw_base_path}")
+            print(f"[DEBUG] Config normalized_base_path={self.base_path}")
+            print(f"[DEBUG] Config base_url={self.base_url}")
+
+        # --- AUTH CONFIG ---
+        self.auth_type = os.getenv("API_AUTH_TYPE", auth.get("type", "bearer"))
+        self.token = os.getenv("API_TOKEN", auth.get("token"))
+
+        if not raw_host:
+            raise ValueError("API_HOST must be set via settings.yaml or environment variable")
 
         if not self.token:
-            raise ValueError("QUAY_API_TOKEN is not set in environment variables or settings.yaml")
+            raise ValueError("API_TOKEN must be set via settings.yaml or environment variable")
