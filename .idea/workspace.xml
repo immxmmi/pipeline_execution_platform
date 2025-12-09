@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Refactor API client and configuration loader to enhance debugging capabilities and error handling; improve response parsing and organization management">
-      <change beforePath="$PROJECT_DIR$/helm/templates/quay-config-secret.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/templates/quay-config-secret.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Refactor API client and configuration loader to enhance debugging capabilities and error handling; improve response parsing and organization management" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -207,7 +205,7 @@
       <workItem from="1764769826104" duration="949000" />
       <workItem from="1764837174966" duration="11314000" />
       <workItem from="1764931683720" duration="144000" />
-      <workItem from="1765182075966" duration="14534000" />
+      <workItem from="1765182075966" duration="15052000" />
     </task>
     <task id="LOCAL-00001" summary="Implement action registry and API client for organization management">
       <option name="closed" value="true" />
@@ -561,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765294884900</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Refactor API client and configuration loader to enhance debugging capabilities and error handling; improve response parsing and organization management">
+      <option name="closed" value="true" />
+      <created>1765295077443</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1765295077443</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

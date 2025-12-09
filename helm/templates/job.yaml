@@ -13,16 +13,31 @@ spec:
           env:
             - name: DISABLE_TLS_VERIFY
               value: "{{ .Values.settings.disableTlsVerify }}"
-            - name: QUAY_API_BASE_URL
+            - name: API_HOST
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.secrets.name }}
-                  key: QUAY_API_BASE_URL
-            - name: QUAY_API_TOKEN
+                  key: API_HOST
+            - name: API_PORT
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.secrets.name }}
-                  key: QUAY_API_TOKEN
+                  key: API_PORT
+            - name: API_BASE_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: API_BASE_PATH
+            - name: API_AUTH_TYPE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: API_AUTH_TYPE
+            - name: API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.name }}
+                  key: API_TOKEN
             {{- if .Values.caBundle.enabled }}
             - name: {{ .Values.caBundle.envVar }}
               value: {{ .Values.caBundle.mountPath }}
