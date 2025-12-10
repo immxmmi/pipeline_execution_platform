@@ -59,13 +59,13 @@ class ApiClient:
             )
         except requests.ConnectionError as e:
             log.error("ApiClient", f"Connection refused when calling {url}: {e}")
-            sys.exit(1)
+            raise e
         except requests.Timeout as e:
             log.error("ApiClient", f"Request timeout when calling {url}: {e}")
-            sys.exit(1)
+            raise e
         except requests.RequestException as e:
             log.error("ApiClient", f"Unexpected request error: {e}")
-            sys.exit(1)
+            raise e
 
         if response.status_code in (301, 308) and "Location" in response.headers:
             redirect_url = response.headers["Location"]
@@ -84,7 +84,7 @@ class ApiClient:
             response.raise_for_status()
         except requests.HTTPError:
             log.error("ApiClient", f"HTTP {response.status_code} on {method} {url} body={response.text}")
-            sys.exit(1)
+            raise
 
         if not response.text or not response.text.strip():
             return {}

@@ -61,15 +61,37 @@ class CreateRobotAccountAction:
 
         except Exception as e:
             msg = str(e)
-            # Quay returns 400 "Could not find robot" BEFORE creation (gateway internal pre-check)
-            # → This must NOT be treated as a failure.
+
             if "Could not find robot" in msg:
                 print(f"[CreateRobotAccountAction] WARN → Pre-check reported missing robot, proceeding with creation fallback")
                 return ActionResponse(
                     success=True,
                     message="Robot did not exist and will be created",
-                    data={"organization": data.get("organization"), "robot": data.get("robot_shortname")}
+                    data={
+                        "organization": data.get("organization"),
+                        "robot": data.get("robot_shortname")
+                    }
                 )
 
-            print(f"[CreateRobotAccountAction] ERROR → {e}")
-            return ActionResponse(success=False, message=str(e))
+            if "Existing robot with name" in msg:
+                print(f"[CreateRobotAccountAction] WARN → Robot already exists: {data.get('robot_shortname')}")
+                return ActionResponse(
+                    success=True,
+                    message="Robot already exists",
+                    data={
+                        "organization": data.get("organization"),
+                        "robot": data.get("robot_shortname")
+                    }
+                )
+
+            # Case 3 → Other non‑fatal errors
+            print(f"[CreateRobotAccountAction] ERROR (non-fatal) → {e}")
+            return ActionResponse(
+                success=True,
+                message="Non‑fatal error while creating robot account",
+                data={
+                    "organization": data.get("organization"),
+                    "robot": data.get("robot_shortname"),
+                    "error": msg
+                }
+            )

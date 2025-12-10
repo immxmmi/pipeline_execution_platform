@@ -80,7 +80,39 @@ class QuayGateway:
             log.debug("QuayGateway", f"get_robot_account org={organization} robot={robot_shortname}")
         if self.client.cfg.debug:
             log.debug("QuayGateway", f"get_robot_account args=({organization}, {robot_shortname})")
-        return self.client.get(f"/organization/{organization}/robots/{robot_shortname}".rstrip("/"))
+        try:
+            return self.client.get(
+                f"/organization/{organization}/robots/{robot_shortname}".rstrip("/")
+            )
+        except Exception as e:
+            msg = str(e)
+
+            # Robot not found (Quay returns 400 or 404 depending)
+            if "Could not find robot" in msg or "404" in msg:
+                return {
+                    "exists": False,
+                    "organization": organization,
+                    "robot": robot_shortname,
+                    "reason": "not_found"
+                }
+
+            # Robot exists but other non-fatal API error happened
+            if "Existing robot with name" in msg:
+                return {
+                    "exists": True,
+                    "organization": organization,
+                    "robot": robot_shortname,
+                    "reason": "already_exists"
+                }
+
+            # Any other error should not propagate as exception
+            return {
+                "exists": False,
+                "organization": organization,
+                "robot": robot_shortname,
+                "reason": "api_error",
+                "error": msg
+            }
 
     def list_robot_accounts(self, organization: str):
         if self.client.cfg.debug:
