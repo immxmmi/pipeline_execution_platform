@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Refactor API client and robot account actions for improved error handling and logging; streamline endpoint formatting">
+    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Refactor API client and robot account actions for improved error handling; raise exceptions instead of exiting">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/create_robot_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/create_robot_account.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gateway/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gateway/quay_gateway.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/quay_gateway.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pipelines/inputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/pipelines/inputs.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,35 +67,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.Dockerfile.executor": "Run",
-    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.gittea/docker-compose.yaml: Compose Deployment.executor": "Run",
-    "Docker.quay/docker-compose.yaml: Compose Deployment.executor": "Run",
-    "KUBERNETES_SUPPRESS_CONFIG_CLUSTER_SUGGESTION": "true",
-    "Makefile Target.help.executor": "Run",
-    "Makefile Target.run_image.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.main.executor": "Run",
-    "Python.pipeline_engine.executor": "Run",
-    "Python.watcher.yaml.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/momo/PycharmProjects/PipelineExecutionPlatform/src/util",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.gittea/docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.quay/docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;KUBERNETES_SUPPRESS_CONFIG_CLUSTER_SUGGESTION&quot;: &quot;true&quot;,
+    &quot;Makefile Target.help.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.run_image.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pipeline_engine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.watcher.yaml.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/momo/PycharmProjects/PipelineExecutionPlatform/src/util&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/util" />
@@ -210,15 +213,8 @@
       <workItem from="1764837174966" duration="11314000" />
       <workItem from="1764931683720" duration="144000" />
       <workItem from="1765182075966" duration="17646000" />
-      <workItem from="1765374734459" duration="7842000" />
-    </task>
-    <task id="LOCAL-00003" summary="Add configuration files and update pipeline execution logic for organization management">
-      <option name="closed" value="true" />
-      <created>1763473335362</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1763473335362</updated>
+      <workItem from="1765374734459" duration="8293000" />
+      <workItem from="1765441093481" duration="2233000" />
     </task>
     <task id="LOCAL-00004" summary="Add robot account management actions and update pipeline configuration">
       <option name="closed" value="true" />
@@ -604,14 +600,21 @@
       <option name="project" value="LOCAL" />
       <updated>1765384545365</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Refactor API client and robot account actions for improved error handling; raise exceptions instead of exiting">
+      <option name="closed" value="true" />
+      <created>1765385111779</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1765385111779</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor Helm templates to use values for dynamic configuration" />
     <MESSAGE value="Add GitHub Actions workflow for building and pushing Helm chart" />
     <MESSAGE value="Update pipeline-config.yaml to escape input parameters for proper rendering" />
     <MESSAGE value="Update values.yaml to use 'latest' tag for image and modify workspace.xml for task tracking" />
@@ -636,10 +639,62 @@
     <MESSAGE value="Add configuration and logger utility; refactor API client and actions for improved logging and error handling" />
     <MESSAGE value="Refactor logging in API client and organization actions for improved clarity; disable debug logging in settings" />
     <MESSAGE value="Refactor API client and robot account actions for improved error handling and logging; streamline endpoint formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor API client and robot account actions for improved error handling and logging; streamline endpoint formatting" />
+    <MESSAGE value="Refactor API client and robot account actions for improved error handling; raise exceptions instead of exiting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor API client and robot account actions for improved error handling; raise exceptions instead of exiting" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>55</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>70</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>112</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
+          <line>109</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1765384789612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1765442532243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

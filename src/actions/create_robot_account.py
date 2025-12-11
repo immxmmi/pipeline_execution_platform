@@ -84,7 +84,6 @@ class CreateRobotAccountAction:
                     }
                 )
 
-            # Case 3 → Other non‑fatal errors
             print(f"[CreateRobotAccountAction] ERROR (non-fatal) → {e}")
             return ActionResponse(
                 success=True,

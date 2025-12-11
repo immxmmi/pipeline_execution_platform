@@ -12,7 +12,7 @@ class QuayGateway:
             log.debug("QuayGateway", f"create_organization name={name}")
         if self.client.cfg.debug:
             log.debug("QuayGateway", f"create_organization args=({name},)")
-        return self.client.post("/organization", json=payload)
+        return self.client.post("/organization/", json=payload)
 
     def delete_organization(self, name: str):
         if self.client.cfg.debug:
@@ -49,7 +49,6 @@ class QuayGateway:
         except Exception as e:
             msg = str(e)
 
-            # Robot already exists
             if "Existing robot with name" in msg:
                 return {
                     "created": False,
@@ -57,7 +56,6 @@ class QuayGateway:
                     "reason": "already_exists"
                 }
 
-            # Robot does not exist (Quay pre-check issue)
             if "Could not find robot" in msg:
                 return {
                     "created": True,
@@ -65,7 +63,6 @@ class QuayGateway:
                     "reason": "precheck_missing"
                 }
 
-            # Any other error should propagate
             raise
 
     def delete_robot_account(self, organization: str, robot_shortname: str):
@@ -87,7 +84,6 @@ class QuayGateway:
         except Exception as e:
             msg = str(e)
 
-            # Robot not found (Quay returns 400 or 404 depending)
             if "Could not find robot" in msg or "404" in msg:
                 return {
                     "exists": False,
@@ -96,7 +92,6 @@ class QuayGateway:
                     "reason": "not_found"
                 }
 
-            # Robot exists but other non-fatal API error happened
             if "Existing robot with name" in msg:
                 return {
                     "exists": True,
@@ -105,7 +100,6 @@ class QuayGateway:
                     "reason": "already_exists"
                 }
 
-            # Any other error should not propagate as exception
             return {
                 "exists": False,
                 "organization": organization,

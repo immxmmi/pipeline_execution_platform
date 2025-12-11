@@ -1,5 +1,4 @@
 import os
-import sys
 import requests
 from config.loader import Config
 from utils.logger import Logger as log
@@ -33,10 +32,18 @@ class ApiClient:
         self.verify = False if disable_verify else os.getenv("CA_BUNDLE", "/etc/ssl/certs/custom-ca.pem")
 
     def _request(self, method, endpoint, **kwargs):
+        cfg = Config()
+        self.cfg = cfg
+
         endpoint = endpoint.strip("/")
         url = f"{self.base_url}/{endpoint}"
-        url = url.replace("://", "§§").replace("//", "/").replace("§§", "://")
-
+        if cfg.debug:
+            log.debug("ApiClient", f"Calling {method} {url}")
+            log.debug("ApiClient", f"Headers: {self.headers}")
+            log.debug("ApiClient", f"Verify: {self.verify}")
+            log.debug("ApiClient", f"Args: {kwargs}")
+            log.debug("ApiClient", f"Endpoint: {endpoint}")
+            log.debug("ApiClient", f"Base URL: {self.base_url}")
         if self.cfg.debug:
             log.debug("ApiClient", f"Request {method} {url}")
             curl_parts = ["curl", "-X", method]
