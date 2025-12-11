@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Add application version to configuration; enhance logging for app version">
-      <change beforePath="$PROJECT_DIR$/src/engine/pipeline_executor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/pipeline_executor.py" afterDir="false" />
+    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Enhance dynamic parameter handling in pipeline executor; improve logging and error handling for parameter validation">
+      <change beforePath="$PROJECT_DIR$/src/config/settings.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/settings.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,15 +210,7 @@
       <workItem from="1764931683720" duration="144000" />
       <workItem from="1765182075966" duration="17646000" />
       <workItem from="1765374734459" duration="8293000" />
-      <workItem from="1765441093481" duration="11188000" />
-    </task>
-    <task id="LOCAL-00008" summary="Add Dockerfile and Makefile for building and running offline Docker images">
-      <option name="closed" value="true" />
-      <created>1764670830754</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1764670830754</updated>
+      <workItem from="1765441093481" duration="11488000" />
     </task>
     <task id="LOCAL-00009" summary="Add GitHub Actions workflow for building and pushing Docker images">
       <option name="closed" value="true" />
@@ -604,7 +596,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765454207330</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Enhance dynamic parameter handling in pipeline executor; improve logging and error handling for parameter validation">
+      <option name="closed" value="true" />
+      <created>1765464127469</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1765464127469</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -622,7 +622,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add helper template functions for chart name and service account resolution" />
     <MESSAGE value="Update version extraction in GitHub Actions to include short SHA" />
     <MESSAGE value="Remove version extraction step from GitHub Actions workflow and hardcode version in Helm chart packaging" />
     <MESSAGE value="Set chart version as an environment variable in Helm push workflow" />
@@ -647,7 +646,8 @@
     <MESSAGE value="Refactor API client and robot account actions for improved logging; streamline endpoint handling and update organization names" />
     <MESSAGE value="Refactor API client and organization actions for improved logging; streamline debug output and enhance clarity" />
     <MESSAGE value="Add application version to configuration; enhance logging for app version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add application version to configuration; enhance logging for app version" />
+    <MESSAGE value="Enhance dynamic parameter handling in pipeline executor; improve logging and error handling for parameter validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance dynamic parameter handling in pipeline executor; improve logging and error handling for parameter validation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
