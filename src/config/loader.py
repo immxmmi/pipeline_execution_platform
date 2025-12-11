@@ -12,6 +12,7 @@ class Config:
 
         debug_cfg = data.get("debug", {})
         self.debug = os.getenv("DEBUG_ENABLED", str(debug_cfg.get("enabled", "false"))).lower() == "true"
+        log.configure(self.debug)
 
         BASE_DIR = Path(__file__).resolve().parent.parent
 

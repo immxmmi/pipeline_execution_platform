@@ -10,9 +10,8 @@ class ApiClient:
         cfg = Config()
         self.cfg = cfg
 
-        if cfg.debug:
-            log.debug("ApiClient", f"base_url={cfg.base_url}")
-            log.debug("ApiClient", f"auth_type={cfg.auth_type}")
+        log.debug("ApiClient", f"base_url={cfg.base_url}")
+        log.debug("ApiClient", f"auth_type={cfg.auth_type}")
 
         self.base_url = cfg.base_url.rstrip("/")
         self.headers = {
@@ -32,28 +31,23 @@ class ApiClient:
         self.verify = False if disable_verify else os.getenv("CA_BUNDLE", "/etc/ssl/certs/custom-ca.pem")
 
     def _request(self, method, endpoint, **kwargs):
-        cfg = Config()
-        self.cfg = cfg
-
         endpoint = endpoint.strip("/")
         url = f"{self.base_url}/{endpoint}"
-        if cfg.debug:
-            log.debug("ApiClient", f"Calling {method} {url}")
-            log.debug("ApiClient", f"Headers: {self.headers}")
-            log.debug("ApiClient", f"Verify: {self.verify}")
-            log.debug("ApiClient", f"Args: {kwargs}")
-            log.debug("ApiClient", f"Endpoint: {endpoint}")
-            log.debug("ApiClient", f"Base URL: {self.base_url}")
-        if self.cfg.debug:
-            log.debug("ApiClient", f"Request {method} {url}")
-            curl_parts = ["curl", "-X", method]
-            for k, v in self.headers.items():
-                curl_parts.append(f"-H '{k}: {v}'")
-            if "json" in kwargs:
-                import json as _json
-                curl_parts.append(f"-d '{_json.dumps(kwargs.get('json'))}'")
-            curl_parts.append(f"'{url}'")
-            log.debug("ApiClient", f"[CURL]: {' '.join(curl_parts)}")
+        log.debug("ApiClient", f"Calling {method} {url}")
+        log.debug("ApiClient", f"Headers: {self.headers}")
+        log.debug("ApiClient", f"Verify: {self.verify}")
+        log.debug("ApiClient", f"Args: {kwargs}")
+        log.debug("ApiClient", f"Endpoint: {endpoint}")
+        log.debug("ApiClient", f"Base URL: {self.base_url}")
+
+        curl_parts = ["curl", "-X", method]
+        for k, v in self.headers.items():
+            curl_parts.append(f"-H '{k}: {v}'")
+        if "json" in kwargs:
+            import json as _json
+            curl_parts.append(f"-d '{_json.dumps(kwargs.get('json'))}'")
+        curl_parts.append(f"'{url}'")
+        log.debug("ApiClient", f"[CURL]: {' '.join(curl_parts)}")
 
         try:
             response = requests.request(

@@ -1,3 +1,4 @@
+from utils.logger import Logger as log
 from gateway.quay_gateway import QuayGateway
 from model.action_response import ActionResponse
 from model.robot_account_model import CreateRobotAccount
@@ -17,7 +18,7 @@ class CreateRobotAccountAction:
 
             dto = CreateRobotAccount(**data)
 
-            print(f"[CreateRobotAccountAction] IN → org={org}, robot={dto.robot_shortname}")
+            log.info("CreateRobotAccountAction", f"IN → org={org}, robot={dto.robot_shortname}")
 
             # --- VALIDATE ORG ---
             if not GetOrganizationAction.exists(org):
@@ -26,14 +27,6 @@ class CreateRobotAccountAction:
                     message="Organization does not exist",
                     data={"organization": org}
                 )
-
-            # --- VALIDATE ROBOT ---
-           #if GetRobotAccountAction.exists(org, dto.robot_shortname):
-           #     return ActionResponse(
-           #         success=True,
-           #         message="Robot account already exists",
-           #         data={"organization": org, "robot": dto.robot_shortname}
-           #     )
 
             # --- CREATE ---
             try:
@@ -47,12 +40,12 @@ class CreateRobotAccountAction:
                 # Quay does a pre-check GET and returns 400 if robot does not exist.
                 # That must be interpreted as: "robot missing → safe to create".
                 if "Could not find robot" in msg:
-                    print(f"[CreateRobotAccountAction] WARN → Gateway pre-check failed (robot missing), treating as creatable")
+                    log.info("CreateRobotAccountAction", "WARN → Pre-check failed (robot missing), treating as creatable")
                     result = {"created": True, "robot": dto.robot_shortname}
                 else:
                     raise
 
-            print(f"[CreateRobotAccountAction] CREATED → {org}/{dto.robot_shortname}")
+            log.info("CreateRobotAccountAction", f"CREATED → {org}/{dto.robot_shortname}")
 
             return ActionResponse(
                 success=True,
@@ -63,7 +56,7 @@ class CreateRobotAccountAction:
             msg = str(e)
 
             if "Could not find robot" in msg:
-                print(f"[CreateRobotAccountAction] WARN → Pre-check reported missing robot, proceeding with creation fallback")
+                log.info("CreateRobotAccountAction", "WARN → Pre-check reported missing robot, proceeding with fallback")
                 return ActionResponse(
                     success=True,
                     message="Robot did not exist and will be created",
@@ -74,7 +67,7 @@ class CreateRobotAccountAction:
                 )
 
             if "Existing robot with name" in msg:
-                print(f"[CreateRobotAccountAction] WARN → Robot already exists: {data.get('robot_shortname')}")
+                log.info("CreateRobotAccountAction", f"Robot already exists: {data.get('robot_shortname')}")
                 return ActionResponse(
                     success=True,
                     message="Robot already exists",
@@ -84,7 +77,7 @@ class CreateRobotAccountAction:
                     }
                 )
 
-            print(f"[CreateRobotAccountAction] ERROR (non-fatal) → {e}")
+            log.error("CreateRobotAccountAction", f"Non‑fatal error: {e}")
             return ActionResponse(
                 success=True,
                 message="Non‑fatal error while creating robot account",

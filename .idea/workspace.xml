@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Refactor API client and robot account actions for improved error handling; raise exceptions instead of exiting">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="35ff7bb3-9dac-41ec-ba6d-268cdd149d9b" name="Changes" comment="Refactor API client and robot account actions for improved logging; streamline endpoint handling and update organization names">
+      <change beforePath="$PROJECT_DIR$/src/actions/create_organization.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/create_organization.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actions/create_robot_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/create_robot_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/settings.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/settings.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/pipeline_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/pipeline_engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/pipeline_validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/pipeline_validator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine_reader/pipeline_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine_reader/pipeline_reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gateway/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gateway/quay_gateway.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/quay_gateway.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pipelines/inputs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/pipelines/inputs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logger.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,15 +220,7 @@
       <workItem from="1764931683720" duration="144000" />
       <workItem from="1765182075966" duration="17646000" />
       <workItem from="1765374734459" duration="8293000" />
-      <workItem from="1765441093481" duration="2233000" />
-    </task>
-    <task id="LOCAL-00004" summary="Add robot account management actions and update pipeline configuration">
-      <option name="closed" value="true" />
-      <created>1763554278592</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1763554278592</updated>
+      <workItem from="1765441093481" duration="4125000" />
     </task>
     <task id="LOCAL-00005" summary="add lib">
       <option name="closed" value="true" />
@@ -608,14 +606,32 @@
       <option name="project" value="LOCAL" />
       <updated>1765385111779</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Refactor API client and robot account actions for improved logging; streamline endpoint handling and update organization names">
+      <option name="closed" value="true" />
+      <created>1765444317804</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1765444317804</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add GitHub Actions workflow for building and pushing Helm chart" />
     <MESSAGE value="Update pipeline-config.yaml to escape input parameters for proper rendering" />
     <MESSAGE value="Update values.yaml to use 'latest' tag for image and modify workspace.xml for task tracking" />
     <MESSAGE value="Add helper template functions for chart name and service account resolution" />
@@ -640,61 +656,62 @@
     <MESSAGE value="Refactor logging in API client and organization actions for improved clarity; disable debug logging in settings" />
     <MESSAGE value="Refactor API client and robot account actions for improved error handling and logging; streamline endpoint formatting" />
     <MESSAGE value="Refactor API client and robot account actions for improved error handling; raise exceptions instead of exiting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor API client and robot account actions for improved error handling; raise exceptions instead of exiting" />
+    <MESSAGE value="Refactor API client and robot account actions for improved logging; streamline endpoint handling and update organization names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor API client and robot account actions for improved logging; streamline endpoint handling and update organization names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>66</line>
+          <line>60</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>57</line>
+          <line>51</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>55</line>
+          <line>49</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>59</line>
+          <line>53</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>67</line>
+          <line>61</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>70</line>
+          <line>64</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>73</line>
+          <line>67</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>112</line>
+          <line>106</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gateway/client.py</url>
-          <line>109</line>
+          <line>103</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1765442532243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/PipelineExecutionPlatform$main.coverage" NAME="main Coverage Results" MODIFIED="1765452838380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

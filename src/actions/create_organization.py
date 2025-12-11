@@ -12,23 +12,19 @@ class CreateOrganizationAction:
 
     def execute(self, data: dict):
         try:
-            log.info("CreateOrganizationAction", f"Executing with data: {data}")
+            log.info("CreateOrganizationAction", "Starting organization creation flow")
             org = Organization(**data)
-            log.debug("CreateOrganizationAction", f"Filtered model data: {org.model_dump()}")
+            log.debug("CreateOrganizationAction", f"Resolved model: {org.model_dump()}")
 
             # --- VALIDATION ---
-            log.info("CreateOrganizationAction", f"Checking if organization exists: {org.name}")
+            log.info("CreateOrganizationAction", f"Validating existence: {org.name}")
             if GetOrganizationAction.exists(org.name):
                 log.info("CreateOrganizationAction", f"Organization already exists: {org.name}")
-                return ActionResponse(
-                    success=True,
-                    message="Organization already exists",
-                    data={"organization": org.name}
-                )
+                return ActionResponse(success=True, data={"organization": org.name})
 
             # --- CREATE NEW ORG ---
             result = self.gateway.create_organization(org.name)
-            log.info("CreateOrganizationAction", f"API result: {result}")
+            log.info("CreateOrganizationAction", "Organization created successfully")
 
             return ActionResponse(
                 success=True,
@@ -36,7 +32,7 @@ class CreateOrganizationAction:
             )
 
         except Exception as e:
-            log.error("CreateOrganizationAction", f"ERROR: {e}")
+            log.error("CreateOrganizationAction", f"Exception occurred: {e}")
             return ActionResponse(
                 success=False,
                 message=str(e)

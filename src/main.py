@@ -1,14 +1,14 @@
 from engine.pipeline_engine import PipelineEngine
 from config.loader import Config
 from datetime import datetime
+from utils.logger import Logger as log
 
 config = Config()
 
 start_ts = datetime.now()
-print(f"[INFO] Pipeline execution started at {start_ts.isoformat()}")
+log.info("Main", f"Pipeline execution started at {start_ts.isoformat()}")
 
-if config.debug:
-    print("[DEBUG]: Loaded configuration:", config.__dict__)
+log.debug("Main", f"Loaded configuration: {config.__dict__}")
 
 engine = PipelineEngine(config)
 
@@ -22,4 +22,4 @@ engine.run(pipeline)
 end_ts = datetime.now()
 duration = (end_ts - start_ts).total_seconds()
 
-print(f"[INFO] Pipeline execution finished at {end_ts.isoformat()} ({duration}s)")
+log.info("Main", f"Pipeline execution finished at {end_ts.isoformat()} ({duration}s)")

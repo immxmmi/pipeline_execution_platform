@@ -15,23 +15,18 @@ class PipelineEngine:
 
     def load_pipeline(self, pipeline_file: str):
         try:
-            cfg = Config()
-            if cfg.debug:
-                log.debug("PipelineEngine", f"Loading pipeline file: {pipeline_file}")
+            log.debug("PipelineEngine", f"Loading pipeline file: {pipeline_file}")
 
             pipeline = self.reader.load_pipeline(pipeline_file)
             inputs = self.reader.load_inputs(self.config.inputs_file)
-            if cfg.debug:
-                log.debug("PipelineEngine", f"Loaded inputs from: {self.config.inputs_file}")
-                log.debug("PipelineEngine", f"Inputs content: {inputs}")
+            log.debug("PipelineEngine", f"Loaded inputs from: {self.config.inputs_file}")
+            log.debug("PipelineEngine", f"Inputs resolved: {inputs}")
 
             pipeline = self.reader.resolve_templates(pipeline, inputs)
-            if cfg.debug:
-                log.debug("PipelineEngine", "Templates resolved")
+            log.debug("PipelineEngine", "Template resolution completed")
 
             self.validator.validate_jobs(pipeline)
-            if cfg.debug:
-                log.info("PipelineEngine", "Pipeline validation completed")
+            log.info("PipelineEngine", "Pipeline validation completed")
             return pipeline
 
         except Exception as e:
@@ -50,14 +45,10 @@ class PipelineEngine:
 
     def run(self, pipeline):
         try:
-            cfg = Config()
-            if cfg.debug:
-                log.info("PipelineEngine", "Starting pipeline execution")
+            log.info("PipelineEngine", "Pipeline execution started")
 
             self.executor.run_pipeline(pipeline, self.config.inputs_file)
         except Exception as e:
-            cfg = Config()
-            if cfg.debug:
-                log.debug("PipelineEngine", f"Execution error detail: {e}")
+            log.debug("PipelineEngine", f"Execution error: {e}")
             log.error("PipelineEngine", f"Pipeline execution failed: {e}")
             sys.exit(1)

@@ -1,15 +1,27 @@
 import datetime
 
 class Logger:
+    DEBUG_ENABLED = False
+
+    @staticmethod
+    def configure(debug: bool):
+        Logger.DEBUG_ENABLED = debug
 
     @staticmethod
     def log(level, cls, msg):
+        colors = {
+            "DEBUG": "\033[94m",  # Blue
+            "INFO": "\033[92m",   # Green
+            "ERROR": "\033[91m",  # Red
+        }
+        reset = "\033[0m"
         ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"[{ts}] [{level}] [{cls}] {msg}")
+        print(f"{colors.get(level, '')}[{ts}] [{level}] [{cls}] {msg}{reset}")
 
     @staticmethod
     def debug(cls, msg):
-        Logger.log("DEBUG", cls, msg)
+        if Logger.DEBUG_ENABLED:
+            Logger.log("DEBUG", cls, msg)
 
     @staticmethod
     def info(cls, msg):
