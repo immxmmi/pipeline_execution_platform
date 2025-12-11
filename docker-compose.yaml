@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   quay-provisioner:
-    image: ghcr.io/immxmmi/quay-provisioner:0.1.0-8da7917
+    image: ghcr.io/immxmmi/quay-provisioner:latest
     container_name: quay-provisioner
     restart: "no"
 

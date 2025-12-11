@@ -1,4 +1,5 @@
 image:
+  pullPolicy: Always
   repository: ghcr.io/immxmmi/quay-provisioner
   tag: "latest"
 

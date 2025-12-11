@@ -10,6 +10,7 @@ spec:
       containers:
         - name: provisioner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
           env:
             - name: DISABLE_TLS_VERIFY
               value: "{{ .Values.settings.disableTlsVerify }}"
